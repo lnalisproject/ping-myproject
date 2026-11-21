@@ -15,14 +15,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Ping Supabase
-        env:
-          SB_URL: ${{ secrets.SUPABASE_URL }}
-          SB_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          echo "Longueur de la clé : ${#SB_KEY}"
-          echo "Début de la clé : ${SB_KEY:0:12}"
-          echo "Longueur de l'URL : ${#SB_URL}"
-          curl -f -sS "$SB_URL/rest/v1/ping?select=id" -H "apikey: $SB_KEY"
+          curl -f -sS "${{ secrets.SUPABASE_URL }}/rest/v1/ping?select=id" \
+            -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
 
       - name: Commit vide (garde le dépôt actif)
         run: |
