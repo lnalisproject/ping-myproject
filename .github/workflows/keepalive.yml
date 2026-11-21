@@ -17,8 +17,7 @@ jobs:
       - name: Ping Supabase
         run: |
           curl -f -sS "${{ secrets.SUPABASE_URL }}/rest/v1/ping?select=id" \
-            -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
+            -H "apikey: ${{ secrets.SUPABASE_KEY }}"
 
       - name: Commit vide (garde le dépôt actif)
         run: |
